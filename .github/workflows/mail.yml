@@ -36,12 +36,12 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    # if:  ${{ inputs.print_tags }} 
+    if:  ${{ inputs.print_tags }} 
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Print the input tag to STDOUT
-        run: echo  The tags are1 ${{ inputs.tags }} 
+        run: echo  The tags are ${{ inputs.tags }} 
       # # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
@@ -58,7 +58,7 @@ jobs:
   build-1:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    # if:  ${{ inputs.print_tags }} 
+    if:  ${{ inputs.print_tags }} 
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
