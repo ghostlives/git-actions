@@ -26,26 +26,53 @@ on:
         type: boolean
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
+
+concurrency:
+  group: '${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
+  cancel-in-progress: true
+
 jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    if:  ${{ inputs.print_tags }} 
+    # if:  ${{ inputs.print_tags }} 
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Print the input tag to STDOUT
         run: echo  The tags are ${{ inputs.tags }} 
       # # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      # - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
       # # Runs a single command using the runners shell
-      # - name: Run a one-line script
-      #   run: echo Hello, world!
+      - name: Run a one-line script
+        run: echo Hello, world!
 
       # # Runs a set of commands using the runners shell
-      # - name: Run a multi-line script
-      #   run: |
-      #     echo Add other actions to build,
-      #     echo test, and deploy your project.
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
+
+  build-1:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    # if:  ${{ inputs.print_tags }} 
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Print the input tag to STDOUT
+        run: echo  The tags are ${{ inputs.tags }} 
+      # # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      # # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      # # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
